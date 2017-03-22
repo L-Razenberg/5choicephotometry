@@ -1,1 +1,24 @@
 % Readme for analysis scripts
+
+
+
+controlincluded_61hz_4
+This is the main analysis script. It takes the pre-processed data as input, and gives traces of 
+the raw values and the df/f for every trial, grouped by response modality (correct, incorrect,
+omission, or premature).
+
+get_triggerTimes
+Called from controlincluded, this will return the trial onset of every trial, in frames.
+
+highpassF
+Highpass filter that be can called from controlincluded to filter low frequency noise.
+
+loop_through_folder
+This will loop through all individual data files from one hemisphere in one rat, and return
+all traces, grouped by response modality.
+
+lowpassF
+Lowpass filter that can be called from controlincluded to filter high frequency noise.
+
+read_5choice
+Called from controlincluded, this will return 5-choice output 
