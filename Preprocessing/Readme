@@ -13,3 +13,7 @@ This is the script you run to convert .abf to .txt. It needs the two files above
 txtMat
 This is a small script to convert .txt to .mat, which runs a lot faster in matlab. It is now set to 
 convert all .txt files in a dir, but you can take parts of the function to convert a single file.
+
+
+
+
