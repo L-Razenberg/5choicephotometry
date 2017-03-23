@@ -1,6 +1,6 @@
 function [corCalc, incCalc, omiCalc, preCalc, deltaFoverFcor, deltaFoverFinc, deltaFoverFomi, deltaFoverFpre, artefactTimes]=controlincluded_61hz_4(filename)
 
-
+% Github comment
 
 close all
 load(filename); %edited 170306#
