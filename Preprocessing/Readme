@@ -1,1 +1,15 @@
 %readme and how-to for preprocessing scripts
+
+
+
+ABFFIO.dll and Abf2Tmp.exe
+These are files you need to convert a .abf file to .txt. We need this because our output is .abf format,
+which can't be read by matlab or any other text manager, so it needs to be converted. These executive
+files need to be in the same directory as the .abf files.
+
+abf2load
+This is the script you run to convert .abf to .txt. It needs the two files above in the same dir. 
+
+txtMat
+This is a small script to convert .txt to .mat, which runs a lot faster in matlab. It is now set to 
+convert all .txt files in a dir, but you can take parts of the function to convert a single file.
