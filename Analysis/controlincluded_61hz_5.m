@@ -341,25 +341,25 @@ for i=1:length(trigstart)-1 %Assigns traces to trial outcomes
 end
 
 %% plot outcomes
-figure(1) % plot adjusted fluorescence readout
+output(1) = figure; % plot adjusted fluorescence readout
 plot([-traceWindow-1/30.5:1/30.5:10],mean(corCalc),'b')
 hold on
 plot([-traceWindow-1/30.5:1/30.5:10],mean(omiCalc),'k')
 if numel(inc)>0
     plot([-traceWindow-1/30.5:1/30.5:10],mean(incCalc),'r')
+end 
 yL = get(gca,'YLim');
 line([0 0],yL,'Color','m');
 line([5 5],yL,'Color','g');
 title('GCaMP6m fluorescence during 5-choice trials')%title
 xlabel('time(s)') % x-axis label
 ylabel('dF470/F405') % y-axis label
+legend('Correct responses', 'Omissions', 'Incorrect responses')
 
-figure(2) % plot dF/F for adjusted fluorescence
+output (2) = figure; % plot dF/F for adjusted fluorescence
 plot([-traceWindow-1/30.5:1/30.5:10],mean(deltaFoverFcor))
 hold on
-yL = get(gca,'YLim');
-line([0 0],yL,'Color','m');
-line([5 5],yL,'Color','g');
+
 title('GCaMP6m fluorescence during 5-choice trials')%title
 xlabel('time(s)') % x-axis label
 ylabel('dF/F') % y-axis label
@@ -367,9 +367,17 @@ plot([-traceWindow-1/30.5:1/30.5:10],mean(deltaFoverFomi),'k')
 if numel(inc)>-1
     plot([-traceWindow-1/30.5:1/30.5:10],mean(deltaFoverFinc),'r')
 end
+legend('Correct responses', 'Omissions', 'Incorrect responses')
+yL = get(gca,'YLim'); 
+line([0 0],yL,'Color','m');
+line([5 5],yL,'Color','g');
 
 
-
+NewFolder = ([num2str(filename(20:end-4)) '_output']); %Creates new folder to save figures in
+mkdir (NewFolder)
+cd (NewFolder)
+savefig (output,'two_plots.fig') 
+cd .. 
 
 
 end
