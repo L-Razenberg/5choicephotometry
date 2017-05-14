@@ -1,10 +1,22 @@
 function [cor, incor, omiss, pre, dfcor, dfincor, dfomiss, dfpre, allFiles]=loop_through_folder
 
-filenames=dir('*1-RIGHT.mat*')
-filenames={filenames.name};
+%% file selection
+% go into the folder where you stored the files
+folder = uigetdir
+cd (folder)
+list = dir()
 
-sessions=numel(filenames);
+%select the desired matfiles, use shift or ctrl to select multiple files 
+[filename, pathname, filterindex] = uigetfile( ...
+{  '*.mat','MAT-files (*.mat)'; ...
+   '*.slx;*.mdl','Models (*.slx, *.mdl)'; ...
+   '*.*',  'All Files (*.*)'}, ...
+   'Pick a file', ...
+   'MultiSelect', 'on');
 
+sessions=numel(filename);
+
+%% 
 cor=[];
 incor=[];
 omiss=[];
@@ -16,16 +28,16 @@ dfpre=[];
 
 % errors=[];
 % pause
+for i=1:numel(filename)
+    filename{i}
 
-for i=1:numel(filenames)
-    filenames{i}
-    [cc, ic, om, pr, dcc, dic, dom, dpr]=controlincluded_61hz_4(filenames{i});
-    
+    [cc, ic, om, pr, dcc, dic, dom, dpr]=controlincluded_61hz_4(filename{i});
     %     ncc=nan(size(cc,1),459); % create tables
     %     nic=nan(size(ic,1),459);
-    %     nom=nan(size(om,1),459);
+    %     nom=nan(size(om,1),459);F
     %     npr=nan(size(pr,1),459);
     
+          
     cor = vertcat(cor, cc);
     if size(ic,1)>1
         incor = vertcat(incor, ic);
@@ -91,6 +103,6 @@ end
 
 
 
-allFiles=filenames;
+allFiles=filename;
 
 % [h,p,ci,stats]=ttest2(cor,omiss)
