@@ -3,8 +3,13 @@ function [corCalc, incCalc, omiCalc, preCalc, deltaFoverFcor, deltaFoverFinc, de
 
 
 close all
-uiopen('matlab') % with this function you can select the file you want to analyse
-%load(filename); %edited 170306#
+filename=uigetfile %with this function you can choose the file you want to analyse
+dirname=uigetdir %it is necessary to specify the folder in which the file is
+
+
+cd (dirname) %script continues in directory of the specified file
+
+load(filename); %edited 170306#
 trigger=data(:,3); %Edited 170306
 signal=data(:,2); %Edited 170306
 % signal_lockin=data(:,1);
