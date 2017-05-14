@@ -1,9 +1,10 @@
-function [corCalc, incCalc, omiCalc, preCalc, deltaFoverFcor, deltaFoverFinc, deltaFoverFomi, deltaFoverFpre, artefactTimes]=controlincluded_61hz_4(filename)
+function [corCalc, incCalc, omiCalc, preCalc, deltaFoverFcor, deltaFoverFinc, deltaFoverFomi, deltaFoverFpre, artefactTimes]=controlincluded_61hz_4
 
 
 
 close all
-load(filename); %edited 170306#
+uiopen('matlab') % with this function you can select the file you want to analyse
+%load(filename); %edited 170306#
 trigger=data(:,3); %Edited 170306
 signal=data(:,2); %Edited 170306
 % signal_lockin=data(:,1);
