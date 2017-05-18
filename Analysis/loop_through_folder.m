@@ -60,18 +60,15 @@ for i=1:numel(filename)
         dfpre = vertcat(dfpre, dpr);
     end
 end
-% 
-% plot([1/1000:1/1000:10.001],mean(cor))
-% hold on
-% plot([1/1000:1/1000:10.001],nanmean(incor),'r')
-% plot([1/1000:1/1000:10.001],mean(omiss),'k')
+plot([-5-1/30.5:1/30.5:10],mean(cor))
+hold on
+plot([-5-1/30.5:1/30.5:10],nanmean(incor),'r') 
+plot([-5-1/30.5:1/30.5:10],mean(omiss),'k')
 
 figure(2) % plot dF/F for adjusted fluorescence
 plot([-5-1/30.5:1/30.5:10],mean(cor))
 hold on
-yL = get(gca,'YLim');
-line([0 0],yL,'Color','m');
-line([5 5],yL,'Color','g');
+
 title('GCaMP6m fluorescence during 5-choice trials')%title
 xlabel('time(s)') % x-axis label
 ylabel('dF/F') % y-axis label
@@ -81,15 +78,16 @@ if numel(incor)>0
 end
 if numel(pre)>0
     plot([-5-1/30.5:1/30.5:10],mean(pre),'m')
+yL = get(gca,'YLim');
+line([0 0],yL,'Color','m');
+line([5 5],yL,'Color','g');
 end
 
 
 figure(3) % plot dF/F for adjusted fluorescence
 plot([-5-1/30.5:1/30.5:10],mean(dfcor))
 hold on
-yL = get(gca,'YLim');
-line([0 0],yL,'Color','m');
-line([5 5],yL,'Color','g');
+
 title('GCaMP6m fluorescence during 5-choice trials')%title
 xlabel('time(s)') % x-axis label
 ylabel('dF/F') % y-axis label
@@ -99,10 +97,14 @@ if numel(dfincor)>0
 end
 if numel(dfpre)>0
     plot([-5-1/30.5:1/30.5:10],mean(dfpre),'m')
+yL = get(gca,'YLim');
+line([0 0],yL,'Color','m');
+line([5 5],yL,'Color','g');
 end
 
 
 
 allFiles=filename;
 
+end 
 % [h,p,ci,stats]=ttest2(cor,omiss)
