@@ -1,0 +1,43 @@
+function data = CC_analysis_pstage_Lotte_Jeroen(stage, fileName)
+
+% Gives output array of defined stage and MED-PC output script to be
+% further analysed.
+%
+% 1. Place this script and MED-PC output script in same folder.
+% 2. Add folder to Matlab path.
+% 3. Change MED-PC output 'filename.MPC' to 'filename.txt'
+% 4. run 'CC_analysis_pstage_Lotte_Jeroen(stage, fileName)' in Matlab
+% Command Window. Where 'stage' = stage # and 'fileName' = 'filename.txt'
+%
+
+% Find where x array starts and imports the whole X array.
+[data,delimiterOut,headerlinesOut]=importdata(fileName,'',60);
+idx = (find(ismember(data(:,1), 'X:')))+60-headerlinesOut;
+clear data delimiterOut headerlinesOut
+data=importdata(fileName,' ',idx);
+
+% Cut the X array off and the last trial.
+endFind = [1: 5: length(data.data)];
+
+for basta = endFind
+    if data.data(basta,1) == 0
+        final = basta;
+        data.data = data.data(1:final,:);
+        break
+    end
+end
+
+data = data.data;
+
+clearvars -except data stage
+
+% Divide in matrix per stage.
+indexing = 1:5:length(data)-1;
+stageUpIndex = 1;
+n = 2;
+for i = indexing
+    if data(i+5,3) - data(i,3) > 0
+        stageUpIndex(n) = i+5;
+        n = n+1;
+    end
+end
