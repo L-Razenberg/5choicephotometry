@@ -169,7 +169,7 @@ end
 % cLPF=zeros(1,numel(calAct_noArtefact));
 % 
 % cLPF=lowpassF(calAct,30.5,0.1);
-%  cLPF_lockin=lowpassF(calAct_lockin,30.5,0.1);
+%  cLPF_lockin=lowpassF(calAct_lockin,30.5,0.1); 
 
 plot(calAct)
 hold on
@@ -274,7 +274,7 @@ trigstart=trig/daqframe;
 traceWindow = 5;
 totalWindow = traceWindow*pointsPerLED*2;
 
-calAct=lowpassF(calAct,30.5,5);
+calAct=lowpassF(calAct,30.5,5); %filter 
 
 for i=1:length(trigstart)-1 %Fluorescent signal during trials
     
